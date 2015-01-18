@@ -5,17 +5,38 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="KRYSTIAN"
   DTS:CreatorName="KRYSTIAN\Krystian"
+  DTS:DelayValidation="True"
   DTS:DTSID="{12919AD0-D83D-4FD6-B73B-B2F80F1CAD01}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="12.0.2430.0"
   DTS:LocaleID="1033"
   DTS:ObjectName="CitiesPackage"
   DTS:PackageType="5"
-  DTS:VersionBuild="37"
-  DTS:VersionGUID="{CEDF047B-7997-4887-ADDB-B5CC145452AF}">
+  DTS:VersionBuild="58"
+  DTS:VersionGUID="{31281895-C2CA-408E-86B4-7AE6B8FF19EF}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CreateTableCityIfNotExists.sql]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{856625CB-C0C4-4132-A2D3-086C0C3705C6}"
+      DTS:ObjectName="CreateTableCityIfNotExists.sql">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="E:\Studia Inf\3. semestr\kursy\Data Warehouses\Project\SQL Scripts\Cities\CreateTableCityIfNotExists.sql" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DropTableCityIfExists.sql]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{F41FC159-F01F-4B66-BBCB-26100B2F029F}"
+      DTS:ObjectName="DropTableCityIfExists.sql">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="E:\Studia Inf\3. semestr\kursy\Data Warehouses\Project\SQL Scripts\Cities\DropTableCityIfExists.sql" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[Flat File Connection Manager - German Cities]"
       DTS:CreationName="FLATFILE"
@@ -257,7 +278,7 @@
                       cachedLength="50"
                       cachedName="CityName"
                       externalMetadataColumnId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[CityName]"
-                      lineageId="Package\Data Flow Task\Flat File Source - UK Cities.Outputs[Flat File Source Output].Columns[CityName]" />
+                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[CityName]" />
                     <inputColumn
                       refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Administration]"
                       cachedCodepage="1252"
@@ -265,13 +286,13 @@
                       cachedLength="50"
                       cachedName="Administration"
                       externalMetadataColumnId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Administration]"
-                      lineageId="Package\Data Flow Task\Flat File Source - UK Cities.Outputs[Flat File Source Output].Columns[Administration]" />
+                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Administration]" />
                     <inputColumn
                       refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Population2011]"
                       cachedDataType="i4"
                       cachedName="Population2011"
                       externalMetadataColumnId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Population2011]"
-                      lineageId="Package\Data Flow Task\Flat File Source - UK Cities.Outputs[Flat File Source Output].Columns[Population2011]" />
+                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Population2011]" />
                     <inputColumn
                       refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[PopulationChange2001_2011]"
                       cachedDataType="i4"
@@ -288,6 +309,10 @@
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
+                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[CityID]"
+                      dataType="i4"
+                      name="CityID" />
+                    <externalMetadataColumn
                       refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[CityName]"
                       dataType="wstr"
                       length="50"
@@ -298,13 +323,13 @@
                       length="50"
                       name="Administration" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Population2011]"
-                      dataType="i4"
-                      name="Population2011" />
-                    <externalMetadataColumn
                       refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Population2001]"
                       dataType="i4"
                       name="Population2001" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Population2011]"
+                      dataType="i4"
+                      name="Population2011" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[PopulationChange2001_2011]"
                       dataType="i4"
@@ -354,7 +379,7 @@
                       refId="Package\Data Flow Task\Derived Column  - Population change 2001 - 2011.Inputs[Derived Column Input].Columns[Population2011]"
                       cachedDataType="i4"
                       cachedName="Population2011"
-                      lineageId="Package\Data Flow Task\Flat File Source - UK Cities.Outputs[Flat File Source Output].Columns[Population2011]" />
+                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Population2011]" />
                     <inputColumn
                       refId="Package\Data Flow Task\Derived Column  - Population change 2001 - 2011.Inputs[Derived Column Input].Columns[Population2001Number]"
                       cachedDataType="i4"
@@ -385,7 +410,7 @@
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">[ISNULL](#{Package\Data Flow Task\Derived Column - Population 2001 to number.Outputs[Derived Column Output].Columns[Population2001Number]}) ? NULL(DT_I4) : (DT_I4)(#{Package\Data Flow Task\Flat File Source - UK Cities.Outputs[Flat File Source Output].Columns[Population2011]} - #{Package\Data Flow Task\Derived Column - Population 2001 to number.Outputs[Derived Column Output].Columns[Population2001Number]})</property>
+                          name="Expression">[ISNULL](#{Package\Data Flow Task\Derived Column - Population 2001 to number.Outputs[Derived Column Output].Columns[Population2001Number]}) ? NULL(DT_I4) : (DT_I4)(#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Population2011]} - #{Package\Data Flow Task\Derived Column - Population 2001 to number.Outputs[Derived Column Output].Columns[Population2001Number]})</property>
                         <property
                           containsID="true"
                           dataType="System.String"
@@ -441,7 +466,7 @@
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="Population2001"
-                      lineageId="Package\Data Flow Task\Flat File Source - UK Cities.Outputs[Flat File Source Output].Columns[Population2001]" />
+                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Population2001]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -467,7 +492,7 @@
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">#{Package\Data Flow Task\Flat File Source - UK Cities.Outputs[Flat File Source Output].Columns[Population2001]} == "..." ? NULL(DT_I4) : (DT_I4)#{Package\Data Flow Task\Flat File Source - UK Cities.Outputs[Flat File Source Output].Columns[Population2001]}</property>
+                          name="Expression">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Population2001]} == "..." ? NULL(DT_I4) : (DT_I4)#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Population2001]}</property>
                         <property
                           containsID="true"
                           dataType="System.String"
@@ -536,15 +561,15 @@
                   name="Flat File Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\Flat File Source - German Cities.Outputs[Flat File Source Output].Columns[Name]"
+                      refId="Package\Data Flow Task\Flat File Source - German Cities.Outputs[Flat File Source Output].Columns[CityName]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Data Flow Task\Flat File Source - German Cities.Outputs[Flat File Source Output].ExternalColumns[Name]"
                       length="50"
-                      lineageId="Package\Data Flow Task\Flat File Source - German Cities.Outputs[Flat File Source Output].Columns[Name]"
-                      name="Name"
+                      lineageId="Package\Data Flow Task\Flat File Source - German Cities.Outputs[Flat File Source Output].Columns[CityName]"
+                      name="CityName"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
@@ -580,15 +605,15 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Flat File Source - German Cities.Outputs[Flat File Source Output].Columns[Adm ]"
+                      refId="Package\Data Flow Task\Flat File Source - German Cities.Outputs[Flat File Source Output].Columns[Administration]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Data Flow Task\Flat File Source - German Cities.Outputs[Flat File Source Output].ExternalColumns[Adm ]"
                       length="50"
-                      lineageId="Package\Data Flow Task\Flat File Source - German Cities.Outputs[Flat File Source Output].Columns[Adm ]"
-                      name="Adm "
+                      lineageId="Package\Data Flow Task\Flat File Source - German Cities.Outputs[Flat File Source Output].Columns[Administration]"
+                      name="Administration"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
@@ -646,15 +671,15 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Flat File Source - German Cities.Outputs[Flat File Source Output].Columns[Population C E 2001-12-31]"
+                      refId="Package\Data Flow Task\Flat File Source - German Cities.Outputs[Flat File Source Output].Columns[Population2001]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Data Flow Task\Flat File Source - German Cities.Outputs[Flat File Source Output].ExternalColumns[Population C E 2001-12-31]"
                       length="50"
-                      lineageId="Package\Data Flow Task\Flat File Source - German Cities.Outputs[Flat File Source Output].Columns[Population C E 2001-12-31]"
-                      name="Population C E 2001-12-31"
+                      lineageId="Package\Data Flow Task\Flat File Source - German Cities.Outputs[Flat File Source Output].Columns[Population2001]"
+                      name="Population2001"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
@@ -668,15 +693,15 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Flat File Source - German Cities.Outputs[Flat File Source Output].Columns[Population C C 2011-05-09]"
+                      refId="Package\Data Flow Task\Flat File Source - German Cities.Outputs[Flat File Source Output].Columns[Population2011]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Data Flow Task\Flat File Source - German Cities.Outputs[Flat File Source Output].ExternalColumns[Population C C 2011-05-09]"
                       length="50"
-                      lineageId="Package\Data Flow Task\Flat File Source - German Cities.Outputs[Flat File Source Output].Columns[Population C C 2011-05-09]"
-                      name="Population C C 2011-05-09"
+                      lineageId="Package\Data Flow Task\Flat File Source - German Cities.Outputs[Flat File Source Output].Columns[Population2011]"
+                      name="Population2011"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
@@ -975,207 +1000,1131 @@
               </outputs>
             </component>
             <component
-              refId="Package\Data Flow Task\Merge"
-              componentClassID="Microsoft.Merge"
-              contactInfo="Merge;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
-              description="Combines rows from multiple sorted data flows into one sorted data flow. Unlike the Merge Join, all rows flow to the output. For example, combine two sorted lists of customers into a single sorted list. If sorting is not important, use the Union All transformation. "
-              name="Merge"
+              refId="Package\Data Flow Task\Script Component - Population 2011 to number"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum.;Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;9"
+              description="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum."
+              name="Script Component - Population 2011 to number"
+              version="9">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Stores the source code of the component"
+                  isArray="true"
+                  name="SourceCode"
+                  state="cdata">
+                  <arrayElements
+                    arrayElementCount="30">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[ComponentWrapper.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services component wrapper
+*  This module defines the base class for your component
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+
+public class UserComponent: ScriptComponent
+{
+    public Connections Connections;
+    public Variables Variables;
+    public UserComponent()
+    {
+        Connections = new Connections(this);
+        Variables = new Variables(this);
+    }
+
+    public override void ProcessInput(int InputID, string InputName, PipelineBuffer Buffer, OutputNameMap OutputMap)
+    {
+
+        if (InputName.Equals(@"Input 0", StringComparison.Ordinal))
+        {
+            Input0_ProcessInput(new Input0Buffer(Buffer, GetColumnIndexes(InputID), OutputMap));
+        }
+
+    }
+
+    public virtual void Input0_ProcessInput(Input0Buffer Buffer)
+    {
+        while (Buffer.NextRow())
+        {
+            Input0_ProcessInputRow(Buffer);
+        }
+    }
+
+    public virtual void Input0_ProcessInputRow(Input0Buffer Row)
+    {
+    }
+
+}
+
+public class Connections
+{
+    ScriptComponent ParentComponent;
+
+    public Connections(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+    public IDTSConnectionManager100 Connection
+    {
+        get
+        {
+            return ParentComponent.ComponentMetaData.RuntimeConnectionCollection.GetRuntimeConnectionByName(@"Connection").ConnectionManager;
+        }
+    }
+
+}
+
+public class Variables
+{
+    ScriptComponent ParentComponent;
+
+    public Variables(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Resources.resx]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[main.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[#region Help:  Introduction to the Script Component
+/* The Script Component allows you to perform virtually any operation that can be accomplished in
+ * a .Net application within the context of an Integration Services data flow.
+ *
+ * Expand the other regions which have "Help" prefixes for examples of specific ways to use
+ * Integration Services features within this script component. */
+#endregion
+
+#region Namespaces
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+#endregion
+
+/// <summary>
+/// This is the class to which to add your code.  Do not change the name, attributes, or parent
+/// of this class.
+/// </summary>
+[Microsoft.SqlServer.Dts.Pipeline.SSISScriptComponentEntryPointAttribute]
+public class ScriptMain : UserComponent
+{
+    #region Help:  Using Integration Services variables and parameters
+    /* To use a variable in this script, first ensure that the variable has been added to
+     * either the list contained in the ReadOnlyVariables property or the list contained in
+     * the ReadWriteVariables property of this script component, according to whether or not your
+     * code needs to write into the variable.  To do so, save this script, close this instance of
+     * Visual Studio, and update the ReadOnlyVariables and ReadWriteVariables properties in the
+     * Script Transformation Editor window.
+     * To use a parameter in this script, follow the same steps. Parameters are always read-only.
+     *
+     * Example of reading from a variable or parameter:
+     *  DateTime startTime = Variables.MyStartTime;
+     *
+     * Example of writing to a variable:
+     *  Variables.myStringVariable = "new value";
+     */
+    #endregion
+
+    #region Help:  Using Integration Services Connnection Managers
+    /* Some types of connection managers can be used in this script component.  See the help topic
+     * "Working with Connection Managers Programatically" for details.
+     *
+     * To use a connection manager in this script, first ensure that the connection manager has
+     * been added to either the list of connection managers on the Connection Managers page of the
+     * script component editor.  To add the connection manager, save this script, close this instance of
+     * Visual Studio, and add the Connection Manager to the list.
+     *
+     * If the component needs to hold a connection open while processing rows, override the
+     * AcquireConnections and ReleaseConnections methods.
+     * 
+     * Example of using an ADO.Net connection manager to acquire a SqlConnection:
+     *  object rawConnection = Connections.SalesDB.AcquireConnection(transaction);
+     *  SqlConnection salesDBConn = (SqlConnection)rawConnection;
+     *
+     * Example of using a File connection manager to acquire a file path:
+     *  object rawConnection = Connections.Prices_zip.AcquireConnection(transaction);
+     *  string filePath = (string)rawConnection;
+     *
+     * Example of releasing a connection manager:
+     *  Connections.SalesDB.ReleaseConnection(rawConnection);
+     */
+    #endregion
+
+    #region Help:  Firing Integration Services Events
+    /* This script component can fire events.
+     *
+     * Example of firing an error event:
+     *  ComponentMetaData.FireError(10, "Process Values", "Bad value", "", 0, out cancel);
+     *
+     * Example of firing an information event:
+     *  ComponentMetaData.FireInformation(10, "Process Values", "Processing has started", "", 0, fireAgain);
+     *
+     * Example of firing a warning event:
+     *  ComponentMetaData.FireWarning(10, "Process Values", "No rows were received", "", 0);
+     */
+    #endregion
+
+    /// <summary>
+    /// This method is called once, before rows begin to be processed in the data flow.
+    ///
+    /// You can remove this method if you don't need to do anything here.
+    /// </summary>
+    public override void PreExecute()
+    {
+        base.PreExecute();
+        /*
+         * Add your code here
+         */
+    }
+
+    /// <summary>
+    /// This method is called after all the rows have passed through this component.
+    ///
+    /// You can delete this method if you don't need to do anything here.
+    /// </summary>
+    public override void PostExecute()
+    {
+        base.PostExecute();
+        /*
+         * Add your code here
+         */
+    }
+
+    /// <summary>
+    /// This method is called once for every row that passes through the component from Input0.
+    ///
+    /// Example of reading a value from a column in the the row:
+    ///  string zipCode = Row.ZipCode
+    ///
+    /// Example of writing a value to a column in the row:
+    ///  Row.ZipCode = zipCode
+    /// </summary>
+    /// <param name="Row">The row that is currently passing through the component</param>
+    public override void Input0_ProcessInputRow(Input0Buffer Row)
+    {
+     
+        int populationNumber;
+
+        if (Int32.TryParse(Row.Population2011.Replace(",", ""), out populationNumber))
+        {
+            Row.Population2011Number = populationNumber;
+        }
+        //else
+        //{
+        //    Row.Population2011Number = 0;
+        //}
+    }
+ 
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_a911d5c61d7240cc9d1906262a2a7aac.csproj]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{d508de5a-342c-4b6a-aac4-346f3cd1cf38}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SC_a911d5c61d7240cc9d1906262a2a7aac</RootNamespace>
+    <AssemblyName>SC_a911d5c61d7240cc9d1906262a2a7aac</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.TxScript, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSRuntimeWrap, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSPipelineWrap, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.PipelineHost, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Compile Include="main.cs" />
+    <Compile Include="BufferWrapper.cs" />
+    <Compile Include="ComponentWrapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <!-- Include the build rules for a C# project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- This section defines VSTA properties that describe the host-changable project properties. -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="ScriptComponent" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" DebugInfoExeName="" DebugInfoCommandLine="" DebugInfoWorkingDir="" IconImageList="" />
+        <Host Name="ScriptComponent" GeneratedNamespace="SC_a911d5c61d7240cc9d1906262a2a7aac" IconIndex="0"></Host>
+        <ProjectClient>
+          <HostIdentifier>SSIS_SC120</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.Designer.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_a911d5c61d7240cc9d1906262a2a7aac.Properties.Settings.get_Default():SC_a911d5c61d7240cc9d1906262a2a7aac.Properties.Sett" +
+    "ings")]
+
+namespace SC_a911d5c61d7240cc9d1906262a2a7aac.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[BufferWrapper.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services buffer wrappers
+*  This module defines classes for accessing data flow buffers
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+
+public class Input0Buffer: ScriptBuffer
+
+{
+    public Input0Buffer(PipelineBuffer Buffer, int[] BufferColumnIndexes, OutputNameMap OutputMap)
+        : base(Buffer, BufferColumnIndexes, OutputMap)
+    {
+    }
+
+    public String Population2011
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[0]);
+        }
+        set
+        {
+            this[0] = value;
+        }
+    }
+    public bool Population2011_IsNull
+    {
+        get
+        {
+            return IsNull(0);
+        }
+        set
+        {
+            if (value)
+            {
+                SetNull(0);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public Int32 Population2011Number
+    {
+        set
+        {
+            this[1] = value;
+        }
+    }
+    public bool Population2011Number_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(1);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    new public bool NextRow()
+    {
+        return base.NextRow();
+    }
+
+    new public bool EndOfRowset()
+    {
+        return base.EndOfRowset();
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Project]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF16LE]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
+	<msb:PropertyGroup>
+		<msb:Language>msBuild</msb:Language>
+		<msb:CodeName>SC_a911d5c61d7240cc9d1906262a2a7aac</msb:CodeName>
+		<msb:DisplayName>SC_a911d5c61d7240cc9d1906262a2a7aac</msb:DisplayName>
+		<msb:ProjectId>{58AF9901-859D-421E-A7CF-FB1CC0DAA736}</msb:ProjectId>
+	</msb:PropertyGroup>
+	<msb:ItemGroup>
+		<msb:Project Include="SC_a911d5c61d7240cc9d1906262a2a7aac.csproj"/>
+		<msb:File Include="Properties\Settings.settings"/>
+		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Resources.resx"/>
+		<msb:File Include="Properties\Resources.Designer.cs"/>
+		<msb:File Include="BufferWrapper.cs"/>
+		<msb:File Include="main.cs"/>
+		<msb:File Include="Properties\Settings.Designer.cs"/>
+		<msb:File Include="ComponentWrapper.cs"/>
+	</msb:ItemGroup>
+</c:Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\AssemblyInfo.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("SC_a911d5c61d7240cc9d1906262a2a7aac")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("SC_a911d5c61d7240cc9d1906262a2a7aac")]
+[assembly: AssemblyCopyright("Copyright @  2015")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.settings]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Resources.Designer.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_a911d5c61d7240cc9d1906262a2a7aac.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
+    "rceManager")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_a911d5c61d7240cc9d1906262a2a7aac.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
+    "fo")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_a911d5c61d7240cc9d1906262a2a7aac.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
+    "):Void")]
+
+namespace SC_a911d5c61d7240cc9d1906262a2a7aac.Properties {
+    
+    
+    /// <summary>
+    ///   A strongly-typed resource class, for looking up localized strings, etc.
+    /// </summary>
+    // This class was auto-generated by the StronglyTypedResourceBuilder
+    // class via a tool like ResGen or Visual Studio.
+    // To add or remove a member, edit your .ResX file then rerun ResGen
+    // with the /str option, or rebuild your VS project.
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    internal class Resources {
+        
+        private static global::System.Resources.ResourceManager resourceMan;
+        
+        private static global::System.Globalization.CultureInfo resourceCulture;
+        
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources() {
+        }
+        
+        /// <summary>
+        ///   Returns the cached ResourceManager instance used by this class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if ((resourceMan == null)) {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SC_a911d5c61d7240cc9d1906262a2a7aac.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
+                }
+                return resourceMan;
+            }
+        }
+        
+        /// <summary>
+        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   resource lookups using this strongly typed resource class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
+                return resourceCulture;
+            }
+            set {
+                resourceCulture = value;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                  </arrayElements>
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Stores the binary representation of the component"
+                  isArray="true"
+                  name="BinaryCode"
+                  state="cdata">
+                  <arrayElements
+                    arrayElementCount="2">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_a911d5c61d7240cc9d1906262a2a7aac.dll]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDABZsu1QAAAAAAAAAAOAAAiELAQsAABYAAAAIAAAAAAAAzjUA
+AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAIA1AABLAAAAAEAAAAgEAAAAAAAAAAAAAAAAAAAA
+AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAA1BUAAAAgAAAAFgAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAAgEAAAAQAAAAAYAAAAYAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAGAAAAACAAAAHgAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAACw
+NQAAAAAAAEgAAAACAAUA4CIAAKASAAABAAAAAAAAACgiAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAH4CKA0AAAoCAnMSAAAGfQEAAAQCAnMUAAAGfQIAAAQqkgRy
+AQAAcBpvDgAACiwVAgUCAygPAAAKDgRzCQAABm8DAAAGKkorBwIDbwQAAAYDbxAAAAYt8SoGKh4C
+KBEAAAoqHgIoEgAACioAABMwAwAmAAAAAQAAEQNvCgAABnIRAABwchUAAHBvEwAAChIAKBQAAAos
+BwMGbw4AAAYqHgIoAQAABioqAgMEBSgVAAAKKlICexYAAAoCexcAAAoWlG8YAAAKKiYCFgMoGQAA
+CioiAhYoGgAACipaAywIAhYoGwAACipyFwAAcHMcAAAKejoCFwOMGQAAASgZAAAKKloDLAgCFygb
+AAAKKnIXAABwcxwAAAp6HgIoHQAACioeAigeAAAKKjoCKB8AAAoCA30DAAAEKoICewMAAARvIAAA
+Cm8hAAAKcrQAAHBvIgAACm8jAAAKKjoCKB8AAAoCA30EAAAEKh4CKB8AAAoqAAAAEzACAC0AAAAC
+AAARfgUAAAQtIHLKAABw0AcAAAIoJQAACm8mAAAKcycAAAoKBoAFAAAEfgUAAAQqGn4GAAAEKh4C
+gAYAAAQqGn4HAAAEKi5zGgAABoAHAAAEKh4CKCoAAAoqAAAAAAC0AAAAzsrvvgEAAACRAAAAbFN5
+c3RlbS5SZXNvdXJjZXMuUmVzb3VyY2VSZWFkZXIsIG1zY29ybGliLCBWZXJzaW9uPTQuMC4wLjAs
+IEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OSNTeXN0ZW0u
+UmVzb3VyY2VzLlJ1bnRpbWVSZXNvdXJjZVNldAIAAAAAAAAAAAAAAFBBRFBBRFC0AAAAQlNKQgEA
+AQAAAAAADAAAAHY0LjAuMzAzMTkAAAAABQBsAAAAKAYAACN+AACUBgAA8AgAACNTdHJpbmdzAAAA
+AIQPAAA8AQAAI1VTAMAQAAAQAAAAI0dVSUQAAADQEAAA0AEAACNCbG9iAAAAAAAAAAIAAAFXFaIB
+CQEAAAD6JTMAFgAAAQAAACQAAAAIAAAABwAAABsAAAARAAAAKgAAAA8AAAACAAAABAAAAAgAAAAL
+AAAAAQAAAAYAAAABAAAAAAAKAAEAAAAAAAYA7gDNAAYA/gDNAAoAGwEUAQ4ANwEiARIAdgHNAAYA
+hQHNABYAOgMSAwoAfgNtAwoArwOaAwoAiARuBAoAswShBAoAygShBAoA5wShBAoABgWhBAoAHwWh
+BAoAOAWhBAoAUwWhBAoAbgWhBAoAhwWhBAoAwAWgBQoA4AWgBQoAIgYUAQoAKQYUAQYAUgbNAAoA
+gQYUAQoAsgYUARoAGQfwBhoASAfwBhoAiwfwBgoA6AfVBwoABQgUAQoACggUAQoALgihBA4AWghE
+CA4AcwhECAoAiAigBQAAAAABAAAAAAABAAEAAQAQADIAAAAFAAEAAQABABAAQAAAAAgAAwAFAAEA
+EABLAAAACQADAAkAAQAQAFgAAAANAAMAEgABABAAZAAAAA0ABAAUAAAAEABuAHgADQAFABUAAAEQ
+AKcAeAARAAcAGQAGAFgAEwAGAGQAFwABAN8CXAABAN8CXAARAI4DcAARALsDdAARAP8DkgBQIAAA
+AACGGE8BGwABAHAgAAAAAMYAkwEfAAEAlSAAAAAAxgGgASkABQCoIAAAAADGAbQBKQAGAKogAAAA
+AMYAywEbAAcAsiAAAAAAxgDWARsABwC8IAAAAADGALQBKQAHAO4gAAAAAIYYTwEbAAgA9iAAAAAA
+hhhPAS8ACAABIQAAAACGCOIBOQALABYhAAAAAIYI9QE9AAsAICEAAAAAhggIAkIADAApIQAAAACG
+CCICRgAMAEAhAAAAAIYIPAJLAA0ATyEAAAAAhghVAkYADgBmIQAAAACGAHUCQgAPAG4hAAAAAIYA
+fQJCAA8AdiEAAAAAhhhPAWAADwCFIQAAAACGCFMDZgAQAKYhAAAAAIYYTwFgABAAtSEAAAAAgxhP
+ARsAEQDAIQAAAACTCMsDeAARAPkhAAAAAJMI3wN9ABEAACIAAAAAkwjrA4IAEQAIIgAAAACWCA8E
+lgASABsiAAAAAIYYTwEbABIADyIAAAAAkRijCBYBEgAAAAEAIwQAAAIAKwQAAAMANQQAAAQAPAQA
+AAEANQQAAAEARgQAAAEARgQAAAEANQQAAAIASgQAAAMAPAQAAAEAXgQAAAEAXgQAAAEAXgQAAAEA
+XgQAAAEAZAQAAAEAZAQAAAEAXgRRAE8BPQBZAE8BPQBhAE8BPQBpAE8BPQBxAE8BPQB5AE8BPQCB
+AE8BPQCJAE8BPQCRAE8BPQCZAE8BPQChAE8BSwCpAE8BGwAJAE8BGwCxADoGoAAJAEEGpwDBAE8B
+GwAJAMsBGwAJANYBGwCxAHkGsgDJAIcGuAARAE8BLwARADUEwwARAEoExwApAJAGywARAJoG0AAR
+AKMG1gARAKoGSwDRAE8BPQARAHUCQgARAH0CQgAZAE8BGwAJADIH2wDZAGsH4ADhAKQH5QDpAL8H
+ZgDxAE8BGwD5ABwI6wD5ADcI8wBBAE8B+QARAU8BBgEhAU8BGwAhAE8BGwAuABsAiwEuAGMAsQEu
+AAsAGgEuABMAYgEuACMAiwEuACsAiwEuADMAYgEuADsAkQEuAEMAiwEuAFsAqAFjAIMArQDJAEMB
+DQHhAEsBrQDjACMBrQDpAEMBDQG/AAEBBAABAAUABQAHAAYACAAIAAAAiQJQAAAAmAJUAAAArgJY
+AAAAwwJUAAAAYgNrAAAAfgOIAAAA9wONAAAAGwSbAAIACgADAAEACwADAAIADAAFAAEADQAFAAEA
+DgAHAAEADwAJAAIAEwALAAIAFgANAAIAFwAPAAEAGAAPAAIAGQARAASAAAABAAAAeBVTQQAAAAAA
+AP4FAAAMAAAAAAAAAAAAAAABALAAAAAAAAQAAAAAAAAAAAAAAAoACwEAAAAABAAAAAAAAAAAAAAA
+CgAUAQAAAAAMAAAAAAAAAAAAAAABAFUBAAAAAAwAAAAAAAAAAAAAAAEA7wIAAAAADAAAAAAAAAAA
+AAAAAQDMBgAAAAAAAAAAAQAAAKoIAAAAAAA8TW9kdWxlPgBTQ19hOTExZDVjNjFkNzI0MGNjOWQx
+OTA2MjYyYTJhN2FhYy5kbGwAVXNlckNvbXBvbmVudABTY3JpcHRNYWluAElucHV0MEJ1ZmZlcgBD
+b25uZWN0aW9ucwBWYXJpYWJsZXMAUmVzb3VyY2VzAFNDX2E5MTFkNWM2MWQ3MjQwY2M5ZDE5MDYy
+NjJhMmE3YWFjLlByb3BlcnRpZXMAU2V0dGluZ3MATWljcm9zb2Z0LlNxbFNlcnZlci5UeFNjcmlw
+dABNaWNyb3NvZnQuU3FsU2VydmVyLkR0cy5QaXBlbGluZQBTY3JpcHRDb21wb25lbnQAU2NyaXB0
+QnVmZmVyAG1zY29ybGliAFN5c3RlbQBPYmplY3QAU3lzdGVtLkNvbmZpZ3VyYXRpb24AQXBwbGlj
+YXRpb25TZXR0aW5nc0Jhc2UALmN0b3IATWljcm9zb2Z0LlNxbFNlcnZlci5QaXBlbGluZUhvc3QA
+UGlwZWxpbmVCdWZmZXIAT3V0cHV0TmFtZU1hcABQcm9jZXNzSW5wdXQASW5wdXQwX1Byb2Nlc3NJ
+bnB1dABJbnB1dDBfUHJvY2Vzc0lucHV0Um93AFByZUV4ZWN1dGUAUG9zdEV4ZWN1dGUAZ2V0X1Bv
+cHVsYXRpb24yMDExAHNldF9Qb3B1bGF0aW9uMjAxMQBnZXRfUG9wdWxhdGlvbjIwMTFfSXNOdWxs
+AHNldF9Qb3B1bGF0aW9uMjAxMV9Jc051bGwAc2V0X1BvcHVsYXRpb24yMDExTnVtYmVyAHNldF9Q
+b3B1bGF0aW9uMjAxMU51bWJlcl9Jc051bGwATmV4dFJvdwBFbmRPZlJvd3NldABQb3B1bGF0aW9u
+MjAxMQBQb3B1bGF0aW9uMjAxMV9Jc051bGwAUG9wdWxhdGlvbjIwMTFOdW1iZXIAUG9wdWxhdGlv
+bjIwMTFOdW1iZXJfSXNOdWxsAFBhcmVudENvbXBvbmVudABNaWNyb3NvZnQuU3FsU2VydmVyLkRU
+U1J1bnRpbWVXcmFwAE1pY3Jvc29mdC5TcWxTZXJ2ZXIuRHRzLlJ1bnRpbWUuV3JhcHBlcgBJRFRT
+Q29ubmVjdGlvbk1hbmFnZXIxMDAAZ2V0X0Nvbm5lY3Rpb24AQ29ubmVjdGlvbgBTeXN0ZW0uUmVz
+b3VyY2VzAFJlc291cmNlTWFuYWdlcgByZXNvdXJjZU1hbgBTeXN0ZW0uR2xvYmFsaXphdGlvbgBD
+dWx0dXJlSW5mbwByZXNvdXJjZUN1bHR1cmUAZ2V0X1Jlc291cmNlTWFuYWdlcgBnZXRfQ3VsdHVy
+ZQBzZXRfQ3VsdHVyZQBDdWx0dXJlAGRlZmF1bHRJbnN0YW5jZQBnZXRfRGVmYXVsdABEZWZhdWx0
+AElucHV0SUQASW5wdXROYW1lAEJ1ZmZlcgBPdXRwdXRNYXAAUm93AEJ1ZmZlckNvbHVtbkluZGV4
+ZXMAdmFsdWUAQ29tcG9uZW50AFN5c3RlbS5SdW50aW1lLlZlcnNpb25pbmcAVGFyZ2V0RnJhbWV3
+b3JrQXR0cmlidXRlAFN5c3RlbS5SZWZsZWN0aW9uAEFzc2VtYmx5VGl0bGVBdHRyaWJ1dGUAQXNz
+ZW1ibHlEZXNjcmlwdGlvbkF0dHJpYnV0ZQBBc3NlbWJseUNvbmZpZ3VyYXRpb25BdHRyaWJ1dGUA
+QXNzZW1ibHlDb21wYW55QXR0cmlidXRlAEFzc2VtYmx5UHJvZHVjdEF0dHJpYnV0ZQBBc3NlbWJs
+eUNvcHlyaWdodEF0dHJpYnV0ZQBBc3NlbWJseVRyYWRlbWFya0F0dHJpYnV0ZQBBc3NlbWJseUN1
+bHR1cmVBdHRyaWJ1dGUAQXNzZW1ibHlWZXJzaW9uQXR0cmlidXRlAFN5c3RlbS5SdW50aW1lLkNv
+bXBpbGVyU2VydmljZXMAQ29tcGlsYXRpb25SZWxheGF0aW9uc0F0dHJpYnV0ZQBSdW50aW1lQ29t
+cGF0aWJpbGl0eUF0dHJpYnV0ZQBTQ19hOTExZDVjNjFkNzI0MGNjOWQxOTA2MjYyYTJhN2FhYwBT
+dHJpbmcAU3RyaW5nQ29tcGFyaXNvbgBFcXVhbHMAR2V0Q29sdW1uSW5kZXhlcwBTU0lTU2NyaXB0
+Q29tcG9uZW50RW50cnlQb2ludEF0dHJpYnV0ZQBSZXBsYWNlAEludDMyAFRyeVBhcnNlAEdldFN0
+cmluZwBzZXRfSXRlbQBJc051bGwAU2V0TnVsbABJbnZhbGlkT3BlcmF0aW9uRXhjZXB0aW9uAE1p
+Y3Jvc29mdC5TcWxTZXJ2ZXIuRFRTUGlwZWxpbmVXcmFwAE1pY3Jvc29mdC5TcWxTZXJ2ZXIuRHRz
+LlBpcGVsaW5lLldyYXBwZXIASURUU0NvbXBvbmVudE1ldGFEYXRhMTAwAGdldF9Db21wb25lbnRN
+ZXRhRGF0YQBJRFRTUnVudGltZUNvbm5lY3Rpb25Db2xsZWN0aW9uMTAwAGdldF9SdW50aW1lQ29u
+bmVjdGlvbkNvbGxlY3Rpb24ASURUU1J1bnRpbWVDb25uZWN0aW9uMTAwAEdldFJ1bnRpbWVDb25u
+ZWN0aW9uQnlOYW1lAGdldF9Db25uZWN0aW9uTWFuYWdlcgBTeXN0ZW0uRGlhZ25vc3RpY3MARGVi
+dWdnZXJOb25Vc2VyQ29kZUF0dHJpYnV0ZQBUeXBlAFJ1bnRpbWVUeXBlSGFuZGxlAEdldFR5cGVG
+cm9tSGFuZGxlAEFzc2VtYmx5AGdldF9Bc3NlbWJseQBTeXN0ZW0uQ29tcG9uZW50TW9kZWwARWRp
+dG9yQnJvd3NhYmxlQXR0cmlidXRlAEVkaXRvckJyb3dzYWJsZVN0YXRlAENvbXBpbGVyR2VuZXJh
+dGVkQXR0cmlidXRlAC5jY3RvcgBTQ19hOTExZDVjNjFkNzI0MGNjOWQxOTA2MjYyYTJhN2FhYy5Q
+cm9wZXJ0aWVzLlJlc291cmNlcy5yZXNvdXJjZXMAAAAAAA9JAG4AcAB1AHQAIAAwAAADLAAAAQCA
+m0kAcwBOAHUAbABsACAAcAByAG8AcABlAHIAdAB5ACAAYwBhAG4AbgBvAHQAIABiAGUAIABzAGUA
+dAAgAHQAbwAgAEYAYQBsAHMAZQAuACAAQQBzAHMAaQBnAG4AIABhACAAdgBhAGwAdQBlACAAdABv
+ACAAdABoAGUAIABjAG8AbAB1AG0AbgAgAGkAbgBzAHQAZQBhAGQALgAAFUMAbwBuAG4AZQBjAHQA
+aQBvAG4AAHFTAEMAXwBhADkAMQAxAGQANQBjADYAMQBkADcAMgA0ADAAYwBjADkAZAAxADkAMAA2
+ADIANgAyAGEAMgBhADcAYQBhAGMALgBQAHIAbwBwAGUAcgB0AGkAZQBzAC4AUgBlAHMAbwB1AHIA
+YwBlAHMAAD69BswBeq9NpQuwW0El/yMACImEXc2AgMyRCLd6XFYZNOCJAwYSFAMGEhgDIAABCSAE
+AQgOEhUSGQUgAQESEAkgAwESFR0IEhkDIAAOBCABAQ4DIAACBCABAQIEIAEBCAMoAA4DKAACAygA
+CAMGEgUFIAEBEgUEIAASHQQoABIdAwYSIQMGEiUEAAASIQQAABIlBQABARIlBAgAEiEECAASJQMG
+EiAEAAASIAQIABIgBiACAg4RXQUgAR0ICAQBAAAABSACDg4OBgACAg4QCAMHAQgDBhIVAwYdCAQg
+AQ4IBSACAQgcBCABAggEIAASbQQgABJxBSABEnUOBwABEn0RgIEFIAASgIUHIAIBDhKAhQQHARIh
+BiABARGAjQgBAAIAAAAAAAMAAAFHAQAaLk5FVEZyYW1ld29yayxWZXJzaW9uPXY0LjABAFQOFEZy
+YW1ld29ya0Rpc3BsYXlOYW1lEC5ORVQgRnJhbWV3b3JrIDQoAQAjU0NfYTkxMWQ1YzYxZDcyNDBj
+YzlkMTkwNjI2MmEyYTdhYWMAAAUBAAAAABYBABFDb3B5cmlnaHQgQCAgMjAxNQAACAEACAAAAAAA
+HgEAAQBUAhZXcmFwTm9uRXhjZXB0aW9uVGhyb3dzAag1AAAAAAAAAAAAAL41AAAAIAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAACwNQAAAAAAAAAAX0NvckRsbE1haW4AbXNjb3JlZS5kbGwAAAAAAP8lACAA
+EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAABABAAAAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAAAABI
+AAAAWEAAALADAAAAAAAAAAAAALADNAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBPAAAA
+AAC9BO/+AAABAAAAAQBTQXgVAAABAFNBeBU/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAARAAA
+AAEAVgBhAHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBvAG4A
+AAAAAAAAsAQQAwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAADsAgAAAQAwADAAMAAw
+ADAANABiADAAAABwACQAAQBGAGkAbABlAEQAZQBzAGMAcgBpAHAAdABpAG8AbgAAAAAAUwBDAF8A
+YQA5ADEAMQBkADUAYwA2ADEAZAA3ADIANAAwAGMAYwA5AGQAMQA5ADAANgAyADYAMgBhADIAYQA3
+AGEAYQBjAAAAQAAPAAEARgBpAGwAZQBWAGUAcgBzAGkAbwBuAAAAAAAxAC4AMAAuADUANAA5ADYA
+LgAxADYANwAyADMAAAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAAUwBDAF8AYQA5
+ADEAMQBkADUAYwA2ADEAZAA3ADIANAAwAGMAYwA5AGQAMQA5ADAANgAyADYAMgBhADIAYQA3AGEA
+YQBjAC4AZABsAGwAAABIABIAAQBMAGUAZwBhAGwAQwBvAHAAeQByAGkAZwBoAHQAAABDAG8AcAB5
+AHIAaQBnAGgAdAAgAEAAIAAgADIAMAAxADUAAAB4ACgAAQBPAHIAaQBnAGkAbgBhAGwARgBpAGwA
+ZQBuAGEAbQBlAAAAUwBDAF8AYQA5ADEAMQBkADUAYwA2ADEAZAA3ADIANAAwAGMAYwA5AGQAMQA5
+ADAANgAyADYAMgBhADIAYQA3AGEAYQBjAC4AZABsAGwAAABoACQAAQBQAHIAbwBkAHUAYwB0AE4A
+YQBtAGUAAAAAAFMAQwBfAGEAOQAxADEAZAA1AGMANgAxAGQANwAyADQAMABjAGMAOQBkADEAOQAw
+ADYAMgA2ADIAYQAyAGEANwBhAGEAYwAAAEQADwABAFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBpAG8A
+bgAAADEALgAwAC4ANQA0ADkANgAuADEANgA3ADIAMwAAAAAASAAPAAEAQQBzAHMAZQBtAGIAbAB5
+ACAAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4ANQA0ADkANgAuADEANgA3ADIAMwAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAwAAADQNQAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
+                  </arrayElements>
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the Microsoft Visual Studio Tools for Applications project. Project names must be unique within a package."
+                  name="VSTAProjectName"
+                  typeConverter="NOTBROWSABLE">SC_a911d5c61d7240cc9d1906262a2a7aac</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the programming language used by the script."
+                  name="ScriptLanguage"
+                  typeConverter="Microsoft.SqlServer.VSTAHosting.ScriptingLanguages">CSharp</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a comma-separated list of read-only variables."
+                  name="ReadOnlyVariables"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIVariablePickerDlg"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a comma-separated list of read/write variables."
+                  name="ReadWriteVariables"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIWriteableVariablePickerDlg"></property>
+                <property
+                  dataType="System.String"
+                  description="List of breakpoints present on the script."
+                  isArray="true"
+                  name="BreakpointCollection"
+                  typeConverter="NOTBROWSABLE">
+                  <arrayElements
+                    arrayElementCount="0" />
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Checksum to match component metedata against compiled codes."
+                  name="MetadataChecksum"
+                  typeConverter="NOTBROWSABLE">a21c78756f54345f5b3f5e3db52ea8d1</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ScriptComponentHost</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Script Component - Population 2011 to number.Connections[Connection]"
+                  connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager - German Cities]"
+                  connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager - German Cities]"
+                  name="Connection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Script Component - Population 2011 to number.Inputs[Input 0]"
+                  hasSideEffects="true"
+                  name="Input 0">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Script Component - Population 2011 to number.Inputs[Input 0].Columns[Population2011]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Population2011"
+                      lineageId="Package\Data Flow Task\Flat File Source - German Cities.Outputs[Flat File Source Output].Columns[Population2011]"
+                      usageType="readWrite" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Script Component - Population 2011 to number.Outputs[Output 0]"
+                  name="Output 0"
+                  synchronousInputId="Package\Data Flow Task\Script Component - Population 2011 to number.Inputs[Input 0]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Script Component - Population 2011 to number.Outputs[Output 0].Columns[Population2011Number]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Script Component - Population 2011 to number.Outputs[Output 0].Columns[Population2011Number]"
+                      name="Population2011Number" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Union All"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Union All"
               version="1">
               <inputs>
                 <input
-                  refId="Package\Data Flow Task\Merge.Inputs[Merge Input 1]"
-                  name="Merge Input 1">
+                  refId="Package\Data Flow Task\Union All.Inputs[Union All Input 1]"
+                  name="Union All Input 1">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Data Flow Task\Merge.Inputs[Merge Input 1].Columns[Name]"
+                      refId="Package\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[CityName]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
-                      cachedName="Name"
-                      lineageId="Package\Data Flow Task\Flat File Source - German Cities.Outputs[Flat File Source Output].Columns[Name]">
+                      cachedName="CityName"
+                      lineageId="Package\Data Flow Task\Flat File Source - UK Cities.Outputs[Flat File Source Output].Columns[CityName]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Merge.Outputs[Merge Output 1].Columns[Name]}</property>
+                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[CityName]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Merge.Inputs[Merge Input 1].Columns[Status]"
+                      refId="Package\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[Administration]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
-                      cachedName="Status"
-                      lineageId="Package\Data Flow Task\Flat File Source - German Cities.Outputs[Flat File Source Output].Columns[Status]">
+                      cachedName="Administration"
+                      lineageId="Package\Data Flow Task\Flat File Source - UK Cities.Outputs[Flat File Source Output].Columns[Administration]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Merge.Outputs[Merge Output 1].Columns[Status]}</property>
+                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Administration]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Merge.Inputs[Merge Input 1].Columns[Adm ]"
+                      refId="Package\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[Population2001]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
-                      cachedName="Adm "
-                      lineageId="Package\Data Flow Task\Flat File Source - German Cities.Outputs[Flat File Source Output].Columns[Adm ]">
+                      cachedName="Population2001"
+                      lineageId="Package\Data Flow Task\Flat File Source - UK Cities.Outputs[Flat File Source Output].Columns[Population2001]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Merge.Outputs[Merge Output 1].Columns[Adm ]}</property>
+                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Population2001]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Merge.Inputs[Merge Input 1].Columns[Population C C 1987-05-25]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="Population C C 1987-05-25"
-                      lineageId="Package\Data Flow Task\Flat File Source - German Cities.Outputs[Flat File Source Output].Columns[Population C C 1987-05-25]">
+                      refId="Package\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[Population2011]"
+                      cachedDataType="i4"
+                      cachedName="Population2011"
+                      lineageId="Package\Data Flow Task\Flat File Source - UK Cities.Outputs[Flat File Source Output].Columns[Population2011]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Merge.Outputs[Merge Output 1].Columns[Population C C 1987-05-25]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Data Flow Task\Merge.Inputs[Merge Input 1].Columns[Population C E 1995-12-31]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="Population C E 1995-12-31"
-                      lineageId="Package\Data Flow Task\Flat File Source - German Cities.Outputs[Flat File Source Output].Columns[Population C E 1995-12-31]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Merge.Outputs[Merge Output 1].Columns[Population C E 1995-12-31]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Data Flow Task\Merge.Inputs[Merge Input 1].Columns[Population C E 2001-12-31]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="Population C E 2001-12-31"
-                      lineageId="Package\Data Flow Task\Flat File Source - German Cities.Outputs[Flat File Source Output].Columns[Population C E 2001-12-31]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Merge.Outputs[Merge Output 1].Columns[Population C E 2001-12-31]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Data Flow Task\Merge.Inputs[Merge Input 1].Columns[Population C C 2011-05-09]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="Population C C 2011-05-09"
-                      lineageId="Package\Data Flow Task\Flat File Source - German Cities.Outputs[Flat File Source Output].Columns[Population C C 2011-05-09]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Merge.Outputs[Merge Output 1].Columns[Population C C 2011-05-09]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Data Flow Task\Merge.Inputs[Merge Input 1].Columns[Population C E 2013-12-31]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="Population C E 2013-12-31"
-                      lineageId="Package\Data Flow Task\Flat File Source - German Cities.Outputs[Flat File Source Output].Columns[Population C E 2013-12-31]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Merge.Outputs[Merge Output 1].Columns[Population C E 2013-12-31]}</property>
+                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Population2011]}</property>
                       </properties>
                     </inputColumn>
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
                 <input
-                  refId="Package\Data Flow Task\Merge.Inputs[Merge Input 2]"
-                  name="Merge Input 2">
+                  refId="Package\Data Flow Task\Union All.Inputs[Union All Input 3]"
+                  hasSideEffects="true"
+                  name="Union All Input 3">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Union All.Inputs[Union All Input 3].Columns[CityName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CityName"
+                      lineageId="Package\Data Flow Task\Flat File Source - German Cities.Outputs[Flat File Source Output].Columns[CityName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[CityName]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Union All.Inputs[Union All Input 3].Columns[Administration]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Administration"
+                      lineageId="Package\Data Flow Task\Flat File Source - German Cities.Outputs[Flat File Source Output].Columns[Administration]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Administration]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Union All.Inputs[Union All Input 3].Columns[Population2001]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Population2001"
+                      lineageId="Package\Data Flow Task\Flat File Source - German Cities.Outputs[Flat File Source Output].Columns[Population2001]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Population2001]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Union All.Inputs[Union All Input 3].Columns[Population2011Number]"
+                      cachedDataType="i4"
+                      cachedName="Population2011Number"
+                      lineageId="Package\Data Flow Task\Script Component - Population 2011 to number.Outputs[Output 0].Columns[Population2011Number]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Population2011]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Data Flow Task\Union All.Inputs[Union All Input 2]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
                   <externalMetadataColumns />
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task\Merge.Outputs[Merge Output 1]"
-                  name="Merge Output 1">
+                  refId="Package\Data Flow Task\Union All.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\Merge.Outputs[Merge Output 1].Columns[Name]"
+                      refId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[CityName]"
                       codePage="1252"
                       dataType="str"
                       length="50"
-                      lineageId="Package\Data Flow Task\Merge.Outputs[Merge Output 1].Columns[Name]"
-                      name="Name" />
+                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[CityName]"
+                      name="CityName" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Merge.Outputs[Merge Output 1].Columns[Status]"
+                      refId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Administration]"
                       codePage="1252"
                       dataType="str"
                       length="50"
-                      lineageId="Package\Data Flow Task\Merge.Outputs[Merge Output 1].Columns[Status]"
-                      name="Status" />
+                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Administration]"
+                      name="Administration" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Merge.Outputs[Merge Output 1].Columns[Adm ]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\Data Flow Task\Merge.Outputs[Merge Output 1].Columns[Adm ]"
-                      name="Adm " />
+                      refId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Population2011]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Population2011]"
+                      name="Population2011" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Merge.Outputs[Merge Output 1].Columns[Population C C 1987-05-25]"
+                      refId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Population2001]"
                       codePage="1252"
                       dataType="str"
                       length="50"
-                      lineageId="Package\Data Flow Task\Merge.Outputs[Merge Output 1].Columns[Population C C 1987-05-25]"
-                      name="Population C C 1987-05-25" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\Merge.Outputs[Merge Output 1].Columns[Population C E 1995-12-31]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\Data Flow Task\Merge.Outputs[Merge Output 1].Columns[Population C E 1995-12-31]"
-                      name="Population C E 1995-12-31" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\Merge.Outputs[Merge Output 1].Columns[Population C E 2001-12-31]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\Data Flow Task\Merge.Outputs[Merge Output 1].Columns[Population C E 2001-12-31]"
-                      name="Population C E 2001-12-31" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\Merge.Outputs[Merge Output 1].Columns[Population C C 2011-05-09]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\Data Flow Task\Merge.Outputs[Merge Output 1].Columns[Population C C 2011-05-09]"
-                      name="Population C C 2011-05-09" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\Merge.Outputs[Merge Output 1].Columns[Population C E 2013-12-31]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\Data Flow Task\Merge.Outputs[Merge Output 1].Columns[Population C E 2013-12-31]"
-                      name="Population C E 2013-12-31" />
+                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Population2001]"
+                      name="Population2001" />
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -1195,38 +2144,62 @@
               startId="Package\Data Flow Task\Derived Column  - Population change 2001 - 2011.Outputs[Derived Column Output]" />
             <path
               refId="Package\Data Flow Task.Paths[Flat File Source Output]"
-              endId="Package\Data Flow Task\Merge.Inputs[Merge Input 1]"
-              name="Flat File Source Output"
-              startId="Package\Data Flow Task\Flat File Source - German Cities.Outputs[Flat File Source Output]" />
-            <path
-              refId="Package\Data Flow Task.Paths[Flat File Source Output1]"
-              endId="Package\Data Flow Task\Merge.Inputs[Merge Input 2]"
+              endId="Package\Data Flow Task\Union All.Inputs[Union All Input 1]"
               name="Flat File Source Output"
               startId="Package\Data Flow Task\Flat File Source - UK Cities.Outputs[Flat File Source Output]" />
             <path
-              refId="Package\Data Flow Task.Paths[Merge Output 1]"
+              refId="Package\Data Flow Task.Paths[Flat File Source Output1]"
+              endId="Package\Data Flow Task\Script Component - Population 2011 to number.Inputs[Input 0]"
+              name="Flat File Source Output"
+              startId="Package\Data Flow Task\Flat File Source - German Cities.Outputs[Flat File Source Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Output 0]"
+              endId="Package\Data Flow Task\Union All.Inputs[Union All Input 3]"
+              name="Output 0"
+              startId="Package\Data Flow Task\Script Component - Population 2011 to number.Outputs[Output 0]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Union All Output 1]"
               endId="Package\Data Flow Task\Derived Column - Population 2001 to number.Inputs[Derived Column Input]"
-              name="Merge Output 1"
-              startId="Package\Data Flow Task\Merge.Outputs[Merge Output 1]" />
+              name="Union All Output 1"
+              startId="Package\Data Flow Task\Union All.Outputs[Union All Output 1]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\Execute SQL Task - Delete from City"
+      DTS:refId="Package\Execute SQL Task - Create table City if not exists"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{18A0427E-D1AE-42F4-AC93-861E50F62BFB}"
+      DTS:DTSID="{A864301C-CFDC-42B7-974B-0A4D9FED7EB8}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Execute SQL Task - Delete from City"
+      DTS:ObjectName="Execute SQL Task - Create table City if not exists"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{FE4E70AD-BA3C-4EA5-8BAC-C1D2943F77FB}"
-          SQLTask:SqlStatementSource="DELETE FROM City" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStmtSourceType="FileConnection"
+          SQLTask:SqlStatementSource="CreateTableCityIfNotExists.sql" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task - Drop table City if exists"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{18A0427E-D1AE-42F4-AC93-861E50F62BFB}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task - Drop table City if exists"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{FE4E70AD-BA3C-4EA5-8BAC-C1D2943F77FB}"
+          SQLTask:SqlStmtSourceType="FileConnection"
+          SQLTask:SqlStatementSource="DropTableCityIfExists.sql" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
@@ -1234,10 +2207,18 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{285E7836-C11B-45CA-9851-C443C7E9A919}"
-      DTS:From="Package\Execute SQL Task - Delete from City"
+      DTS:DTSID="{BC2D1144-372C-4517-AB24-6B74DCBA105A}"
+      DTS:From="Package\Execute SQL Task - Drop table City if exists"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
+      DTS:To="Package\Execute SQL Task - Create table City if not exists" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{057F3BA6-6B21-420D-B124-E301865B7F1E}"
+      DTS:From="Package\Execute SQL Task - Create table City if not exists"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
       DTS:To="Package\Data Flow Task" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
@@ -1251,188 +2232,22 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="151,42"
           Id="Package\Data Flow Task"
-          TopLeft="100,167" />
+          TopLeft="100,258" />
         <NodeLayout
           Size="221,42"
-          Id="Package\Execute SQL Task - Delete from City"
+          Id="Package\Execute SQL Task - Drop table City if exists"
           TopLeft="65,76" />
+        <NodeLayout
+          Size="173,51"
+          Id="Package\Execute SQL Task - Create table City if not exists"
+          TopLeft="88,162" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="175.5,118">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,49"
-              Start="0,0"
-              End="0,41.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,41.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </Package>
-  <TaskHost
-    design-time-name="Package\Data Flow Task">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="292,42"
-          Id="Package\Data Flow Task\Derived Column - Population 2001 to number"
-          TopLeft="297,213" />
-        <NodeLayout
-          Size="151,42"
-          Id="Package\Data Flow Task\Flat File Source - UK Cities"
-          TopLeft="120,38" />
-        <NodeLayout
-          Size="315,42"
-          Id="Package\Data Flow Task\Derived Column  - Population change 2001 - 2011"
-          TopLeft="290,303" />
-        <NodeLayout
-          Size="179,42"
-          Id="Package\Data Flow Task\ADO NET Destination"
-          TopLeft="358,394" />
-        <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Derived Column Output1]"
-          TopLeft="447.5,345">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,49"
-              Start="0,0"
-              End="0,41.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,41.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-8,12.75,16,16"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Derived Column Output]"
-          TopLeft="445.25,255">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,48"
-              Start="0,0"
-              End="0,40.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,40.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-8,12.25,16,16"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="227,42"
-          Id="Package\Data Flow Task\Flat File Source - German Cities"
-          TopLeft="516,40" />
-        <NodeLayout
-          Size="108,42"
-          Id="Package\Data Flow Task\Merge"
-          TopLeft="384,127" />
-        <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Flat File Source Output]"
-          TopLeft="629.5,82">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-174.833333333333,45"
-              Start="0,0"
-              End="-174.833333333333,37.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,22.6058394160584" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,22.6058394160584"
-                    Point2="0,26.6058394160584"
-                    Point3="-4,26.6058394160584" />
-                  <mssgle:LineSegment
-                    End="-170.833333333333,26.6058394160584" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-170.833333333333,26.6058394160584"
-                    Point2="-174.833333333333,26.6058394160584"
-                    Point3="-174.833333333333,30.6058394160584" />
-                  <mssgle:LineSegment
-                    End="-174.833333333333,37.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Flat File Source Output1]"
-          TopLeft="195.5,80">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="225.833333333333,47"
-              Start="0,0"
-              End="225.833333333333,39.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,23.7883211678832" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,23.7883211678832"
-                    Point2="0,27.7883211678832"
-                    Point3="4,27.7883211678832" />
-                  <mssgle:LineSegment
-                    End="221.833333333333,27.7883211678832" />
-                  <mssgle:CubicBezierSegment
-                    Point1="221.833333333333,27.7883211678832"
-                    Point2="225.833333333333,27.7883211678832"
-                    Point3="225.833333333333,31.7883211678832" />
-                  <mssgle:LineSegment
-                    End="225.833333333333,39.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Merge Output 1]"
-          TopLeft="440.5,169">
+          TopLeft="175,118">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1449,9 +2264,233 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-8,10.25,16,16"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="175,213">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45"
+              Start="0,0"
+              End="0,37.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="292,42"
+          Id="Package\Data Flow Task\Derived Column - Population 2001 to number"
+          TopLeft="280,320" />
+        <NodeLayout
+          Size="227,42"
+          Id="Package\Data Flow Task\Flat File Source - German Cities"
+          TopLeft="506,19" />
+        <NodeLayout
+          Size="302,42"
+          Id="Package\Data Flow Task\Script Component - Population 2011 to number"
+          TopLeft="503,117" />
+        <NodeLayout
+          Size="121,42"
+          Id="Package\Data Flow Task\Union All"
+          TopLeft="360,234" />
+        <NodeLayout
+          Size="315,42"
+          Id="Package\Data Flow Task\Derived Column  - Population change 2001 - 2011"
+          TopLeft="273,410" />
+        <NodeLayout
+          Size="179,42"
+          Id="Package\Data Flow Task\ADO NET Destination"
+          TopLeft="341,501" />
+        <NodeLayout
+          Size="203,42"
+          Id="Package\Data Flow Task\Flat File Source - UK Cities"
+          TopLeft="123,18" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Flat File Source Output1]"
+          TopLeft="619.5,61">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="34.5,56"
+              Start="0,0"
+              End="34.5,48.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24"
+                    Point2="0,28"
+                    Point3="4,28" />
+                  <mssgle:LineSegment
+                    End="30.5,28" />
+                  <mssgle:CubicBezierSegment
+                    Point1="30.5,28"
+                    Point2="34.5,28"
+                    Point3="34.5,32" />
+                  <mssgle:LineSegment
+                    End="34.5,48.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Flat File Source Output]"
+          TopLeft="224.5,60">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="177.166666666667,174"
+              Start="0,0"
+              End="177.166666666667,166.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,99.0375203915171" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,99.0375203915171"
+                    Point2="0,103.037520391517"
+                    Point3="4,103.037520391517" />
+                  <mssgle:LineSegment
+                    End="173.166666666667,103.037520391517" />
+                  <mssgle:CubicBezierSegment
+                    Point1="173.166666666667,103.037520391517"
+                    Point2="177.166666666667,103.037520391517"
+                    Point3="177.166666666667,107.037520391517" />
+                  <mssgle:LineSegment
+                    End="177.166666666667,166.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Derived Column Output1]"
+          TopLeft="430.5,452">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49"
+              Start="0,0"
+              End="0,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Derived Column Output]"
+          TopLeft="428.25,362">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48"
+              Start="0,0"
+              End="0,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Union All Output 1]"
+          TopLeft="423.25,276">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44"
+              Start="0,0"
+              End="0,36.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Output 0]"
+          TopLeft="654,159">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-214.666666666667,75"
+              Start="0,0"
+              End="-214.666666666667,67.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.4127243066884" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.4127243066884"
+                    Point2="0,44.4127243066884"
+                    Point3="-4,44.4127243066884" />
+                  <mssgle:LineSegment
+                    End="-210.666666666667,44.4127243066884" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-210.666666666667,44.4127243066884"
+                    Point2="-214.666666666667,44.4127243066884"
+                    Point3="-214.666666666667,48.4127243066884" />
+                  <mssgle:LineSegment
+                    End="-214.666666666667,67.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
