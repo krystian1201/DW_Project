@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "DW_Project_IS", "DW_Project_IS\DW_Project_IS.dtproj", "{A5220E17-0952-4192-82CB-31E0DE4444D2}"
 EndProject
 Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "DW_Project_IS_2", "DW_Project_IS_2\DW_Project_IS_2.dtproj", "{32A20104-1859-4A60-AD5A-4DFF989A2A2A}"
+EndProject
+Project("{D2ABAB84-BF74-430A-B69E-9DC6D40DDA17}") = "DW_Project_AS", "DW_Project_AS\DW_Project_AS.dwproj", "{BA6CCD5D-8C4F-4176-80F7-87CB7764C025}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,6 +18,9 @@ Global
 		{A5220E17-0952-4192-82CB-31E0DE4444D2}.Development|Default.Build.0 = Development
 		{32A20104-1859-4A60-AD5A-4DFF989A2A2A}.Development|Default.ActiveCfg = Development
 		{32A20104-1859-4A60-AD5A-4DFF989A2A2A}.Development|Default.Build.0 = Development
+		{BA6CCD5D-8C4F-4176-80F7-87CB7764C025}.Development|Default.ActiveCfg = Development
+		{BA6CCD5D-8C4F-4176-80F7-87CB7764C025}.Development|Default.Build.0 = Development
+		{BA6CCD5D-8C4F-4176-80F7-87CB7764C025}.Development|Default.Deploy.0 = Development
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
